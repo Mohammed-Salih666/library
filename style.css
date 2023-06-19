@@ -36,7 +36,7 @@ header {
 
 main {
     display: grid;
-    grid-template-columns: repeat(4, minmax(250px, 20%));
+    grid-template-columns: repeat(4, minmax(300px, 20%));
     grid-auto-rows: minmax(400px, 40%);
     overflow: auto;
     gap: 3%;
@@ -53,7 +53,23 @@ main > div {
     align-items: center;
 }
 
-button {
+main > div >button {
     width: 40%;
     height: 10%;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+    /* height: auto; */
+}
+.button-container > button {
+    height: 50px;
+    width: 20%;
+    background-color: beige;
+    border: 1px black solid;
+    border-radius: 15px;
 }
