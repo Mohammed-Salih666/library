@@ -14,25 +14,24 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-let book = new Book("title", "some Author", 234, "dskjfd", true); 
-addBookToLibrary(book); 
-
-console.log(myLibrary[0]);
+Book.prototype.setRead = function() {
+    this.isRead = !this.isRead;
+}
 
 let bookInput = document.createElement('form'); 
 let main = document.getElementById('main');
-bookInput.style = "display: flex; flex-direction: column; justify-content: center; align-items:center; gap:3%; position: absolute; top: 25vh; align-self:center; border: solid black 1px; border-radius: 15px; width: 25%; height: 40%; background: #fff7ed;";
+bookInput.style = "display: flex; flex-direction: column; justify-content: center; align-items:center; gap:3%; position: absolute; top: 25vh; align-self:center; border: solid black 1px; border-radius: 15px; width: 30%; height: 50%; background: azure;";
 
 
 let addBookBtn = document.getElementById('new-book'); 
 
 let html = `
 
-    <input type="text" name="title" id="title" placeholder="title">
-    <input type="text" name="author" id="author" placeholder="author">
-    <input type="number" name="pages" id="pages" min="1" placeholder="number of pages">
-    <textarea  id="description" placeholder="describe the book..." name="description"></textarea>
-    <div>
+    <input type="text" name="title" id="title" placeholder="Title">
+    <input type="text" name="author" id="author" placeholder="Author">
+    <input type="number" name="pages" id="pages" min="1" placeholder="Number of pages">
+    <textarea  id="description" placeholder="Describe the book..." name="description"></textarea>
+    <div style="display:flex; width: 65%; justify-content: space-around;">
         <label for="isRead">Have you read it?</label>
         <input type="checkbox" name="isRead" id="isRead">
     </div>
@@ -54,7 +53,6 @@ bookInput.addEventListener("submit", (event) => {
 
     const newBook = new Book(title, author, pages, description, isRead); 
     myLibrary.push(newBook);
-    console.log(newBook);
 
     document.body.removeChild(bookInput);
 
@@ -72,7 +70,6 @@ bookInput.addEventListener("submit", (event) => {
     
     let btn = document.getElementById(`isRead${myLibrary.length}`);
     btn.addEventListener("click", () => {
-        console.log(btn.textContent);
         if(btn.textContent == "Read") {
             btn.style.backgroundColor = "red";
             btn.textContent = "Not Read"; 
@@ -81,11 +78,11 @@ bookInput.addEventListener("submit", (event) => {
             btn.style.backgroundColor = "lightgreen"; 
             btn.textContent = "Read"; 
         }
+        myLibrary[parseInt(btn.parentElement.getAttribute('id')) - 1].setRead();
     });
 
     let deleteBtn = document.getElementById(`delete${myLibrary.length}`);
     deleteBtn.addEventListener("click", () => {
-        console.log(deleteBtn.parentElement);
         const btnNum = deleteBtn.parentElement.getAttribute('id');
         const bookToDelete = document.getElementById(btnNum);
         main.removeChild(bookToDelete);
