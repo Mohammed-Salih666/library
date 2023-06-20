@@ -12,6 +12,7 @@ body {
     align-items: center;
     background-color: azure;
     height: 10vh;
+    width: 100vw;
     box-shadow: 0px 2px 10px 1px rgb(216, 213, 213);
 }
 
