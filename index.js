@@ -59,17 +59,38 @@ bookInput.addEventListener("submit", (event) => {
     document.body.removeChild(bookInput);
 
     const bookHTML = `
-    <div>
-        <h3>${title}</h3>
-        <h4>${author}</h4>
+    <div id=${myLibrary.length}>
+        <h2>${title}</h2>
+        <h3>${author}</h3>
         <p>${description}</p>
-        <button>read</button>
+        <button id="isRead${myLibrary.length}" style="background-color: ${isRead? "lightgreen" : "red"}">${isRead? "Read": "not Read"}</button>
+        <button id="delete${myLibrary.length}" style ="background-color: red;">Delete Book</button>
     </div>
 `;
 
     main.insertAdjacentHTML('afterbegin', bookHTML);
+    
+    let btn = document.getElementById(`isRead${myLibrary.length}`);
+    btn.addEventListener("click", () => {
+        console.log(btn.textContent);
+        if(btn.textContent == "Read") {
+            btn.style.backgroundColor = "red";
+            btn.textContent = "Not Read"; 
+        }
+        else {
+            btn.style.backgroundColor = "lightgreen"; 
+            btn.textContent = "Read"; 
+        }
+    });
 
-
+    let deleteBtn = document.getElementById(`delete${myLibrary.length}`);
+    deleteBtn.addEventListener("click", () => {
+        console.log(deleteBtn.parentElement);
+        const btnNum = deleteBtn.parentElement.getAttribute('id');
+        const bookToDelete = document.getElementById(btnNum);
+        main.removeChild(bookToDelete);
+        
+    });
     bookInput.reset();
 
 });
