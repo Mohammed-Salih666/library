@@ -59,7 +59,8 @@ bookInput.addEventListener("submit", (event) => {
     const bookHTML = `
     <div id=${myLibrary.length}>
         <h2>${title}</h2>
-        <h3>${author}</h3>
+        <h3>By: ${author}</h3>
+        <h3>Pages count: ${pages}</h3>
         <p>${description}</p>
         <button id="isRead${myLibrary.length}" style="background-color: ${isRead? "lightgreen" : "red"}">${isRead? "Read": "not Read"}</button>
         <button id="delete${myLibrary.length}" style ="background-color: red;">Delete Book</button>
